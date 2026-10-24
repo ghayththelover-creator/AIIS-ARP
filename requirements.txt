@@ -1,0 +1,12 @@
+# Versions used for the thesis experiments (Table 3.4) and for the v2 smoke test
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+scikit-learn==1.9.1
+xgboost==3.4.1
+shap==0.54.1
+lime==0.2.0.1
+tensorflow==2.21.0      # only for the LSTM / hybrid / fusion parts of 4_revision_experiments.py (E1, E2, E5)
+matplotlib>=3.8
+tabulate>=0.9
+joblib>=1.3
