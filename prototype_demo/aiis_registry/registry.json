@@ -1,0 +1,29 @@
+{
+  "active": "v0001",
+  "versions": [
+    {
+      "version": "v0001",
+      "file": "v0001.joblib",
+      "sha256": "f2358a955534e0536a3c7fe3a79ba55afc830058e913bee9e570154184f0b5e6",
+      "created": "2026-10-25T12:42:47",
+      "reason": "initial training",
+      "n_train": 85866,
+      "n_attack": 18794,
+      "arp_vs_rest": false,
+      "train_seconds": 4.58
+    },
+    {
+      "version": "v0002",
+      "file": "v0002.joblib",
+      "sha256": "ea2107434e3f45bd8330c24c1197af0f765815b9e9fd79018518a2326d07edab",
+      "created": "2026-10-25T12:43:19",
+      "reason": "feedback analyst_batch_13_15.csv",
+      "n_train": 106667,
+      "n_attack": 23399,
+      "f1_current_on_batch": 0.9304,
+      "f1_candidate_on_batch": 0.947,
+      "promoted": true,
+      "parent": "v0001"
+    }
+  ]
+}
