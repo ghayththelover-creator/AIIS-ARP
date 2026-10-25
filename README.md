@@ -61,6 +61,20 @@ GroupKFold(5) on the partition index is deterministic.
 `arp_vs_rest_report.md` (+ CSV), `S7b_deletion_all_folds.csv`, `fast_results.json`, and — after running them —
 `round2_results.json` and `cd_summary.json`.
 
+## Provenance of the reported revision results (E0–E8)
+The numbers reported in thesis Section 5.7 and in the paper (E0–E8, including the CD diagram,
+Tables 5.7 and 5.9) come from **version 2 of the Kaggle revision notebook**
+(full run, `quick: False`, 21 October 2026, 08:56–11:16).
+
+* `kaggle_v2_run/code/` — the exact code attached to that notebook run (unchanged).
+* `revision_out/` — the outputs of that run, unchanged: `revision_results.json`, fold scores,
+  E6/E7 tables and figures (`fig_cd_diagram.png` = thesis Figure 5.14).
+
+The scripts in the repository root (v2.0) are the updated package prepared for the second review
+round. They differ from `kaggle_v2_run/code/`; in particular, in the reported run XGBoost was tuned
+with 20 candidates and the LSTM with 4, as stated in thesis Section 5.7.6, whereas root script 4
+supports an equal tuning budget. To reproduce the reported numbers, use `kaggle_v2_run/code/`.
+
 Repository: https://github.com/ghayththelover-creator/AIIS-ARP
 
 The original 16-configuration notebook: https://www.kaggle.com/code/ghaythasad/notebookbb18ce43db
