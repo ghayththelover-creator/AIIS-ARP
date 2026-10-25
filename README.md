@@ -75,6 +75,15 @@ round. They differ from `kaggle_v2_run/code/`; in particular, in the reported ru
 with 20 candidates and the LSTM with 4, as stated in thesis Section 5.7.6, whereas root script 4
 supports an equal tuning budget. To reproduce the reported numbers, use `kaggle_v2_run/code/`.
 
+## Second-round outputs (release v2.2)
+* `round2/` — unchanged outputs of `10_round2_analyses.py` (R1–R6), run from release v2.1 in the Kaggle notebook
+  https://www.kaggle.com/code/ghaythasad/aiis-arp-round-2-analyses (version 1, 25 October 2026; 4-core CPU,
+  Python 3.13.15, scikit-learn 1.6.1, XGBoost 3.4.1, SHAP 0.52.0, LIME 0.2.0.1), with the run log `round2_log.txt`.
+* `prototype_demo/` — the reference prototype (`5_aiis_arp_service.py`) run on CICIoT2023 in the same notebook
+  (25 October 2026): `train` on partitions 1–12, `detect` on partitions 13–15, then `feedback`, `status` and
+  `rollback`. Contains every alert (`alerts.jsonl`, 4,174 alerts), the session log and the model registry
+  (model files not included). The first alert is the example line in thesis Appendix D.
+
 Repository: https://github.com/ghayththelover-creator/AIIS-ARP
 
 The original 16-configuration notebook: https://www.kaggle.com/code/ghaythasad/notebookbb18ce43db
