@@ -1,0 +1,61 @@
+{
+  "All features": {
+    "amortised_us_per_record": 2.5152525418995983,
+    "single_record_ms": 0.2531005000037112,
+    "single_record_ms_p95": 0.3323750000845392,
+    "single_raw_record_with_preprocessing_ms": 1.5267934999201316,
+    "timing_fold_records": 21244,
+    "F1": 0.928289456303282,
+    "F1_SD": 0.0021565610523138438,
+    "TPR": 0.8853112673640885,
+    "FPR_pct": 0.6188446627657781,
+    "Precision": 0.9757123281198318,
+    "ROC_AUC": 0.9920514559834728,
+    "TP": 20649,
+    "FN": 2675,
+    "FP": 514,
+    "TN": 82544,
+    "train_s_last_fold": 3.0488915990001715
+  },
+  "Without IAT": {
+    "F1": 0.8596647223087863,
+    "F1_SD": 0.003990135686420623,
+    "TPR": 0.7836991939632996,
+    "FPR_pct": 1.1100676635604037,
+    "Precision": 0.9519816676214781,
+    "ROC_AUC": 0.9708703457441014,
+    "TP": 18279,
+    "FN": 5045,
+    "FP": 922,
+    "TN": 82136,
+    "train_s_last_fold": 3.143942048000099
+  },
+  "Without IAT, Number, Weight": {
+    "F1": 0.8583860997228655,
+    "F1_SD": 0.005460857743517561,
+    "TPR": 0.7819413479677585,
+    "FPR_pct": 1.1196994871053962,
+    "Precision": 0.9514816360601002,
+    "ROC_AUC": 0.9709780647070648,
+    "TP": 18238,
+    "FN": 5086,
+    "FP": 930,
+    "TN": 82128,
+    "train_s_last_fold": 3.041140220999978
+  },
+  "environment": {
+    "python": "3.13.17",
+    "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 2,
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "xgboost": "3.4.1",
+    "shap": "0.54.1",
+    "lime": null,
+    "tensorflow": "2.21.0",
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz"
+  }
+}
