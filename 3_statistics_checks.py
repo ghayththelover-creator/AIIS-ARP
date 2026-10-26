@@ -18,7 +18,7 @@ def wilson(k, n, z=1.96):
 
 
 print("TPR 95% CI", wilson(tp, tp + fn), "FPR 95% CI", wilson(fp, fp + tn))
-print("Friedman p", chi2.sf(74.47, 15))                       # 7.1e-11
+print("Friedman p", chi2.sf(74.47, 15))                       # 7.1e-10
 for a, b in [(561, 498), (585, 480), (451, 243)]:              # McNemar, Table 5.2
     s = (abs(a - b) - 1) ** 2 / (a + b)
     p = chi2.sf(s, 1)

@@ -1,4 +1,4 @@
-# AIIS-ARP — replication package, version 2.0 (second review round)
+# AIIS-ARP — replication package, version 2.3 (third review round)
 
 Thesis: *An Adaptive and Interpretable Intelligent System for Early Detection of ARP Spoofing and
 Man-in-the-Middle Attacks* (MSc Cybersecurity, Northern Border University) and the companion journal paper.
@@ -83,6 +83,22 @@ supports an equal tuning budget. To reproduce the reported numbers, use `kaggle_
   (25 October 2026): `train` on partitions 1–12, `detect` on partitions 13–15, then `feedback`, `status` and
   `rollback`. Contains every alert (`alerts.jsonl`, 4,174 alerts), the session log and the model registry
   (model files not included). The first alert is the example line in thesis Appendix D.
+
+## Release v2.3 (third review round): complete output files and provenance
+
+* `RESULTS_PROVENANCE.md` maps every table and figure of the thesis and the paper to the run and output file
+  that produced it, and lists the values that were updated in the third revision round.
+* New folders with the **unchanged** output files of the runs that produced the remaining reported results:
+  * `original_run/` – outputs of the original 16-configuration benchmark (Kaggle notebook
+    `notebookbb18ce43db`, **version 1**): per-configuration metrics and fold scores, McNemar inputs,
+    adaptivity per-batch scores, SHAP/LIME timing, deletion test and the figures of thesis Chapter 5.
+  * `supp_out/` – `supp_report.md`, `arp_vs_rest_report.md`, `S7b_deletion_all_folds.csv` and the CSV tables of
+    scripts 6–8.
+  * `1_iat_ablation_results.json` – output of `1_iat_ablation_and_timing.py` (thesis Table 5.5 / Appendix C).
+* `3_statistics_checks.py`: comment corrected (`chi2.sf(74.47, 15)` = 7.1e-10).
+* Hybrid and fusion models: all reported results use **in-sample** LSTM embeddings; no out-of-fold re-run has
+  been reported. To run it: `EMB_MODE=oof SKIP=E0,E2,E3,E4,E5,E6,E7,E8 python 4_revision_experiments.py`
+  (writes `oof_predictions.csv` and `E1_fold_f1_matrix.csv`; then `python 11_cd_diagram.py`).
 
 Repository: https://github.com/ghayththelover-creator/AIIS-ARP
 
