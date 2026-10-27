@@ -1,0 +1,130 @@
+# AIIS-ARP supplementary analyses
+
+Generated 2026-10-27 05:10
+
+Partitions: 15; binary records: 106,667; targets: 106,382; features: 46
+
+## S1 Per-partition counts
+
+|   partition | pfile                 |   records |   attacks |   benign |   attack_share |   targets |
+|------------:|:----------------------|----------:|----------:|---------:|---------------:|----------:|
+|           0 | part-00000-subset.csv |      7214 |      1614 |     5600 |         0.2237 |      7195 |
+|           1 | part-00001-subset.csv |      6632 |      1432 |     5200 |         0.2159 |      6613 |
+|           2 | part-00002-subset.csv |      8222 |      1835 |     6387 |         0.2232 |      8203 |
+|           3 | part-00003-subset.csv |      6831 |      1534 |     5297 |         0.2246 |      6812 |
+|           4 | part-00004-subset.csv |      6862 |      1476 |     5386 |         0.2151 |      6843 |
+|           5 | part-00005-subset.csv |      7325 |      1538 |     5787 |         0.2100 |      7306 |
+|           6 | part-00006-subset.csv |      7081 |      1544 |     5537 |         0.2180 |      7062 |
+|           7 | part-00007-subset.csv |      6839 |      1512 |     5327 |         0.2211 |      6820 |
+|           8 | part-00008-subset.csv |      7496 |      1622 |     5874 |         0.2164 |      7477 |
+|           9 | part-00009-subset.csv |      6975 |      1511 |     5464 |         0.2166 |      6956 |
+|          10 | part-00010-subset.csv |      7632 |      1640 |     5992 |         0.2149 |      7613 |
+|          11 | part-00011-subset.csv |      6757 |      1536 |     5221 |         0.2273 |      6738 |
+|          12 | part-00012-subset.csv |      7069 |      1599 |     5470 |         0.2262 |      7050 |
+|          13 | part-00013-subset.csv |      7256 |      1576 |     5680 |         0.2172 |      7237 |
+|          14 | part-00014-subset.csv |      6476 |      1430 |     5046 |         0.2208 |      6457 |
+
+Test partitions per fold: [[2, 4, 14], [1, 9, 10], [8, 11, 12], [5, 6, 7], [0, 3, 13]]
+
+## S2 Duplicate screening
+
+- Records with an exact feature-vector duplicate anywhere: 2 (0.00%)
+- Records whose exact duplicate occurs in another partition: 2
+- Feature vectors carrying both labels (label conflicts): 0
+|   fold |   test_records |   exact_dup_in_train |   exact_dup_share |   median_nn_dist_test_to_train |   median_nn_dist_train_to_train |   near_dup_share_test |   eps_1pct_train |
+|-------:|---------------:|---------------------:|------------------:|-------------------------------:|--------------------------------:|----------------------:|-----------------:|
+| 1.0000 |     21503.0000 |               0.0000 |            0.0000 |                         0.4573 |                          0.4557 |                0.0035 |           0.0135 |
+| 2.0000 |     21182.0000 |               0.0000 |            0.0000 |                         0.4434 |                          0.4463 |                0.0090 |           0.0174 |
+| 3.0000 |     21265.0000 |               0.0000 |            0.0000 |                         0.4528 |                          0.4612 |                0.0085 |           0.0200 |
+| 4.0000 |     21188.0000 |               0.0000 |            0.0000 |                         0.4539 |                          0.4478 |                0.0085 |           0.0195 |
+| 5.0000 |     21244.0000 |               0.0000 |            0.0000 |                         0.4544 |                          0.4575 |                0.0110 |           0.0194 |
+Near-duplicate = test record whose nearest training neighbour (z-scored space) is closer than the 1st percentile of within-training nearest-neighbour distances.
+
+## S3 Per-fold confusion matrices (XGB, T=1)
+
+|   fold |        TP |       FN |       FP |         TN |    Acc |   Prec |    TPR |    FPR |     F1 |    MCC |   ROC_AUC |   PR_AUC |
+|-------:|----------:|---------:|---------:|-----------:|-------:|-------:|-------:|-------:|-------:|-------:|----------:|---------:|
+| 1.0000 | 4179.0000 | 549.0000 |  89.0000 | 16686.0000 | 0.9703 | 0.9791 | 0.8839 | 0.0053 | 0.9291 | 0.9123 |    0.9922 |   0.9806 |
+| 2.0000 | 4041.0000 | 529.0000 | 111.0000 | 16501.0000 | 0.9698 | 0.9733 | 0.8842 | 0.0067 | 0.9266 | 0.9093 |    0.9915 |   0.9782 |
+| 3.0000 | 4211.0000 | 533.0000 |  94.0000 | 16427.0000 | 0.9705 | 0.9782 | 0.8876 | 0.0057 | 0.9307 | 0.9138 |    0.9926 |   0.9813 |
+| 4.0000 | 4026.0000 | 551.0000 | 104.0000 | 16507.0000 | 0.9691 | 0.9748 | 0.8796 | 0.0063 | 0.9248 | 0.9073 |    0.9917 |   0.9791 |
+| 5.0000 | 4198.0000 | 507.0000 | 107.0000 | 16432.0000 | 0.9711 | 0.9751 | 0.8922 | 0.0065 | 0.9319 | 0.9150 |    0.9923 |   0.9809 |
+
+Pooled vs mean-of-fold:
+
+|         |   mean_of_folds |   pooled_OOF |
+|:--------|----------------:|-------------:|
+| Acc     |          0.9702 |       0.9702 |
+| Prec    |          0.9761 |       0.9761 |
+| TPR     |          0.8855 |       0.8856 |
+| FPR     |          0.0061 |       0.0061 |
+| F1      |          0.9286 |       0.9286 |
+| MCC     |          0.9115 |       0.9116 |
+| ROC_AUC |          0.9921 |       0.9921 |
+| PR_AUC  |          0.9800 |       0.9800 |
+
+## S5 Partition-level paired bootstrap of F1 differences (AIIS-ARP minus competitor)
+
+| competitor   |    dF1 |   ci_low |   ci_high |   partitions_favouring_AIIS |   wilcoxon_p_15_partitions |
+|:-------------|-------:|---------:|----------:|----------------------------:|---------------------------:|
+| RF, T=1      | 0.0063 |   0.0046 |    0.0079 |                          15 |                     0.0001 |
+| DT, T=1      | 0.0371 |   0.0348 |    0.0395 |                          15 |                     0.0001 |
+| LR, T=1      | 0.1777 |   0.1741 |    0.1813 |                          15 |                     0.0001 |
+2000 bootstrap resamples of the 15 partitions (cluster bootstrap); 95% percentile intervals.
+
+## S4 Adaptivity with size-matched and recent-window baselines
+
+|   batch |   static |   cumulative |   size_matched |   recent_window_3 |
+|--------:|---------:|-------------:|---------------:|------------------:|
+|  4.0000 |   0.9332 |       0.9332 |         0.9307 |            0.9332 |
+|  5.0000 |   0.9248 |       0.9258 |         0.9236 |            0.9253 |
+|  6.0000 |   0.9160 |       0.9206 |         0.9201 |            0.9164 |
+|  7.0000 |   0.9215 |       0.9276 |         0.9182 |            0.9185 |
+|  8.0000 |   0.9185 |       0.9219 |         0.9172 |            0.9174 |
+|  9.0000 |   0.9188 |       0.9203 |         0.9140 |            0.9146 |
+| 10.0000 |   0.9152 |       0.9245 |         0.9151 |            0.9156 |
+| 11.0000 |   0.9210 |       0.9270 |         0.9205 |            0.9155 |
+| 12.0000 |   0.9327 |       0.9364 |         0.9278 |            0.9343 |
+| 13.0000 |   0.9231 |       0.9333 |         0.9256 |            0.9229 |
+| 14.0000 |   0.9224 |       0.9316 |         0.9209 |            0.9177 |
+| 15.0000 |   0.9211 |       0.9265 |         0.9230 |            0.9200 |
+- cumulative - static: mean dF1 = +0.0050 (95% bootstrap CI +0.0033 to +0.0069); Wilcoxon p = 0.0010
+- size_matched - static: mean dF1 = -0.0010 (95% bootstrap CI -0.0024 to +0.0005); Wilcoxon p = 0.2334
+- recent_window_3 - static: mean dF1 = -0.0014 (95% bootstrap CI -0.0027 to -0.0002); Wilcoxon p = 0.1475
+Size-matched = random sample of all partitions seen so far with the same number of records as the static model's training set; recent-window = the last three partitions seen.
+
+## S6 IAT distribution across partitions
+
+| cls    |   median_min |     median_max |   KS_mean |   KS_max |
+|:-------|-------------:|---------------:|----------:|---------:|
+| arp    |       0.0228 | 166603807.8498 |    0.0203 |   0.0295 |
+| benign |       0.0356 | 166516735.9009 |    0.0109 |   0.0180 |
+KS distance benign vs ARP (all partitions): 0.4970. Compare with the within-class KS_vs_rest values above.
+
+## S7 Deletion test under alternative baselines (fold 1)
+
+TreeExplainer config: feature_perturbation=tree_path_dependent, model_output=raw
+Max |sum(SHAP)+E[f] - log-odds margin| = 8.58e-06 (additivity in log-odds)
+|   k | baseline     |   drop_top |   drop_random |
+|----:|:-------------|-----------:|--------------:|
+|   1 | mean (0)     |     0.2813 |        0.0001 |
+|   1 | median       |     0.5767 |        0.0238 |
+|   1 | benign mean  |     0.2885 |        0.0003 |
+|   1 | benign donor |     0.4131 |        0.0185 |
+|   3 | mean (0)     |     0.3087 |        0.0103 |
+|   3 | median       |     0.7003 |        0.0623 |
+|   3 | benign mean  |     0.3994 |        0.0108 |
+|   3 | benign donor |     0.5502 |        0.0536 |
+|   5 | mean (0)     |     0.3727 |        0.0263 |
+|   5 | median       |     0.8525 |        0.0989 |
+|   5 | benign mean  |     0.5139 |        0.0290 |
+|   5 | benign donor |     0.7031 |        0.0590 |
+|  10 | mean (0)     |     0.7590 |        0.0589 |
+|  10 | median       |     0.9693 |        0.2376 |
+|  10 | benign mean  |     0.8658 |        0.0775 |
+|  10 | benign donor |     0.8798 |        0.1678 |
+'benign donor' replaces the deleted features with the values of a real benign training record (a realistic, in-distribution perturbation).
+
+## S8 Negative controls: other attack classes scored by AIIS-ARP
+
+No other attack classes found in the selected partitions.

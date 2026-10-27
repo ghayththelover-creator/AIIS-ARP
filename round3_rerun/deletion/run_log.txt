@@ -1,0 +1,26 @@
+fold 1 done
+fold 2 done
+fold 3 done
+fold 4 done
+fold 5 done
+
+Deletion test, 200 alerts per fold, replacement = training mean (0), 5 folds
+|   k | features   |   mean |    sd |   min |   max |
+|----:|:-----------|-------:|------:|------:|------:|
+|   1 | SHAP top-k |  0.289 | 0.050 | 0.247 | 0.375 |
+|   1 | random k   |  0.007 | 0.004 | 0.001 | 0.013 |
+|   3 | SHAP top-k |  0.361 | 0.038 | 0.307 | 0.405 |
+|   3 | random k   |  0.018 | 0.008 | 0.011 | 0.030 |
+|   5 | SHAP top-k |  0.416 | 0.055 | 0.339 | 0.484 |
+|   5 | random k   |  0.046 | 0.016 | 0.026 | 0.070 |
+|  10 | SHAP top-k |  0.765 | 0.053 | 0.682 | 0.811 |
+|  10 | random k   |  0.086 | 0.009 | 0.077 | 0.099 |
+
+Per fold, k = 5:
+|   fold |   SHAP top-k |   random k |
+|-------:|-------------:|-----------:|
+|      1 |        0.392 |      0.043 |
+|      2 |        0.431 |      0.043 |
+|      3 |        0.437 |      0.070 |
+|      4 |        0.484 |      0.047 |
+|      5 |        0.339 |      0.026 |

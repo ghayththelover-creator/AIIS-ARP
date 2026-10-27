@@ -84,21 +84,17 @@ supports an equal tuning budget. To reproduce the reported numbers, use `kaggle_
   `rollback`. Contains every alert (`alerts.jsonl`, 4,174 alerts), the session log and the model registry
   (model files not included). The first alert is the example line in thesis Appendix D.
 
-## Release v2.3 (third review round): complete output files and provenance
+## Release v2.3 (third review round): out-of-fold re-run and complete provenance
 
-* `RESULTS_PROVENANCE.md` maps every table and figure of the thesis and the paper to the run and output file
-  that produced it, and lists the values that were updated in the third revision round.
-* New folders with the **unchanged** output files of the runs that produced the remaining reported results:
-  * `original_run/` – outputs of the original 16-configuration benchmark (Kaggle notebook
-    `notebookbb18ce43db`, **version 1**): per-configuration metrics and fold scores, McNemar inputs,
-    adaptivity per-batch scores, SHAP/LIME timing, deletion test and the figures of thesis Chapter 5.
-  * `supp_out/` – `supp_report.md`, `arp_vs_rest_report.md`, `S7b_deletion_all_folds.csv` and the CSV tables of
-    scripts 6–8.
-  * `1_iat_ablation_results.json` – output of `1_iat_ablation_and_timing.py` (thesis Table 5.5 / Appendix C).
+* `round3_rerun/benchmark/` – re-run of all 16 configurations in which the hybrid and fusion second stages are
+  fitted both on in-sample and on inner out-of-fold LSTM embeddings from the same LSTM fits, with every
+  per-record prediction, fold scores, Friedman/Nemenyi, McNemar and partition-level bootstrap statistics
+  (thesis Table 5.2 and Figure 5.6; paper Table 4). See `round3_rerun/README.md`.
+* `round3_rerun/ablation/`, `round3_rerun/supp/`, `round3_rerun/deletion/` – re-runs of scripts 1, 6 and 8 on the
+  study subset; they reproduce thesis Tables 5.5, 5.12, 5.14 and 5.15 exactly.
+* `RESULTS_PROVENANCE.md` maps every table and figure of the thesis and the paper to its run and output file and
+  lists the values updated in the third revision round.
 * `3_statistics_checks.py`: comment corrected (`chi2.sf(74.47, 15)` = 7.1e-10).
-* Hybrid and fusion models: all reported results use **in-sample** LSTM embeddings; no out-of-fold re-run has
-  been reported. To run it: `EMB_MODE=oof SKIP=E0,E2,E3,E4,E5,E6,E7,E8 python 4_revision_experiments.py`
-  (writes `oof_predictions.csv` and `E1_fold_f1_matrix.csv`; then `python 11_cd_diagram.py`).
 
 Repository: https://github.com/ghayththelover-creator/AIIS-ARP
 
